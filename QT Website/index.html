@@ -49,6 +49,15 @@
   .nav-links a{font-size:11px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.3s;position:relative;}
   .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--mint);transform:scaleX(0);transition:transform 0.3s;}
   .nav-links a:hover{color:var(--text);}.nav-links a:hover::after{transform:scaleX(1);}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+  .hamburger span{display:block;width:24px;height:1.5px;background:var(--text-dim);transition:all 0.3s;}
+  .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  .mobile-menu{display:none;position:fixed;inset:0;background:rgba(8,8,8,0.97);z-index:99;flex-direction:column;justify-content:center;align-items:center;gap:40px;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-family:'Syne',sans-serif;font-size:28px;font-weight:700;color:var(--text-dim);text-decoration:none;letter-spacing:0.08em;transition:color 0.3s;}
+  .mobile-menu a:hover{color:var(--orange);}
 
   /* HERO */
   .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 60px 100px;position:relative;overflow:hidden;}
@@ -162,13 +171,13 @@
   /* MOBILE */
   @media(max-width:768px){
     .svc-naics-list div[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important;}
-    nav{padding:20px;}.nav-links{display:none;}.hero{padding:0 20px 60px;}.hero-stats{display:none;}
+    nav{padding:20px;}.nav-links{display:none;}.hamburger{display:flex;}.hero{padding:0 20px 60px;}.hero-stats{display:none;}
     h1{font-size:clamp(36px,10vw,52px);}.hero-sub{font-size:14px;max-width:100%;}
     .hero-cta{flex-direction:column;align-items:flex-start;gap:16px;}
     section{padding:60px 20px;}.about-grid{grid-template-columns:1fr;}
     .svc-naics-list{grid-template-columns:1fr;}
     .exp-header{grid-template-columns:1fr;gap:30px;}
-    .svc-diagram{display:none;} .exp-grid{grid-template-columns:1fr;} .exp-grid-solo .exp-card{width:100%;}
+    .svc-diagram{display:none;} .exp-grid{grid-template-columns:1fr;} .exp-grid-solo .exp-card{width:100%;} .svc-cards-grid{grid-template-columns:1fr!important;}
     h2{font-size:clamp(28px,7vw,40px);}.contact h2{font-size:clamp(32px,8vw,48px);}
     footer{flex-direction:column;gap:16px;text-align:center;}.scroll-line{display:none;}
   }
@@ -187,7 +196,17 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#services" class="mobile-link">Services</a>
+  <a href="#experience" class="mobile-link">Experience</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -208,6 +227,10 @@
     <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Gov. Agencies</div></div>
     <div class="stat"><div class="stat-num">541611</div><div class="stat-label">Primary NAICS</div></div>
     <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Compliance Focus</div></div>
+    <div style="border-top:1px solid var(--border-dim);padding-top:20px;text-align:right;">
+      <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;color:var(--mint);text-transform:uppercase;margin-bottom:4px;">SAM Registered</div>
+      <div style="font-family:'Syne',sans-serif;font-size:10px;color:var(--text-muted);">UEI: QWU4YJLQPQ95 · CAGE: 19SE1</div>
+    </div>
   </div>
 </section>
 
@@ -259,16 +282,7 @@
       <h2 class="reveal">Rigorous by design.<br><span style="color:var(--blue)">Accountable</span> <em>by default.</em></h2>
       <p class="reveal" style="color:var(--text-dim);font-size:15px;margin-top:24px;line-height:1.9;">Government contracting is where capable firms get eliminated — not on merit, but on execution. Proposals get disqualified on technicalities. Deliverables slip. Digital presence doesn't meet agency standards. The opportunity is there, but the infrastructure to capture it often isn't.</p>
       <p class="reveal" style="color:var(--text-dim);font-size:15px;margin-top:16px;line-height:1.9;">We built Quiet Theory to close the gap between qualified and awarded. Compliance is the baseline. Precision is the edge. Every engagement is executed with structured methodology and zero margin for error. Be it a proposal package or a government web presence, we own every step.</p>
-      <div class="reveal" style="margin-top:32px;display:flex;gap:24px;">
-        <div style="padding:16px 20px;border:1px solid var(--border-dim);background:var(--card-bg);">
-          <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--mint);text-transform:uppercase;margin-bottom:6px;">SAM Registered</div>
-          <div style="font-family:'Syne',sans-serif;font-size:11px;color:var(--text-dim);">UEI: QWU4YJLQPQ95 · CAGE: 19SE1</div>
-        </div>
-        <div style="padding:16px 20px;border:1px solid var(--border-dim);background:var(--card-bg);">
-          <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--mint);text-transform:uppercase;margin-bottom:6px;">NAICS</div>
-          <div style="font-family:'Syne',sans-serif;font-size:11px;color:var(--text-dim);">541611 · 541511 · 541512</div>
-        </div>
-      </div>
+
     </div>
     <!-- Photo right -->
     <div class="about-photo-right reveal">
@@ -420,7 +434,7 @@
 
     <!-- BLUE: Contract Support (05–06) -->
     <div class="svc-row-label"><span style="background:#4B7BF5;"></span><span style="color:#4B7BF5;">Contract Support</span></div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;">
+    <div class="svc-cards-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;">
       <div class="svc-card blue">
         <div class="svc-card-top"><span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:#4B7BF5;opacity:0.6;flex-shrink:0;">05</span><span style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#E8E4DC;letter-spacing:0.04em;">Post-Award Coordination</span></div>
         <div class="svc-card-desc">Deliverable tracking, reporting coordination, and contract documentation management throughout the period of performance.</div>
@@ -435,7 +449,7 @@
 
     <!-- ORANGE: Proposal Management (01–04) -->
     <div class="svc-row-label"><span style="background:#fc7f42;"></span><span style="color:#fc7f42;">Proposal Management</span></div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;">
+    <div class="svc-cards-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;">
       <div class="svc-card orange">
         <div class="svc-card-top"><span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:#fc7f42;opacity:0.6;flex-shrink:0;">01</span><span style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#E8E4DC;letter-spacing:0.04em;">Proposal Coordination</span></div>
         <div class="svc-card-desc">End-to-end assembly of compliant proposal packages — section organization, formatting, and QC prior to submission.</div>
@@ -456,7 +470,7 @@
 
     <!-- MINT: Web & Digital (07–08) -->
     <div class="svc-row-label"><span style="background:#44ffbb;"></span><span style="color:#44ffbb;">Web &amp; Digital</span></div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+    <div class="svc-cards-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
       <div class="svc-card mint">
         <div class="svc-card-top"><span style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:#44ffbb;opacity:0.6;flex-shrink:0;">07</span><span style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#E8E4DC;letter-spacing:0.04em;">Web Design &amp; Dev</span></div>
         <div class="svc-card-desc">Full-service design and development for government-ready web presences, program sites, and digital communications.</div>
@@ -622,6 +636,20 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -784,5 +812,19 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry =>
